@@ -9,14 +9,54 @@
 </head>
 <body>
 
-	<div class="container">
+	<div class="container header">
 		<div class="row">
 			<div class="col-xs-12">
-				<img src="img/nav-logo.png">
+				<img class="logo" src="img/nav-logo.png">
+				<h1>Nav Generator</h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-6">
+				<h2>How it works</h2>
+				<ol>
+					<li>Enter the number of level-1 categories you will need</li>
+					<li>Enter the number of respective you will need for level-2 and/or level-3 categories</li>
+				</ol>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 generate_container">
+					<form class="form-group">
+						<label>How many Level-1 Categories do you need?</label>
+						<input type="text" class="form-control" id="category_amount" placeholder="Category Amount">
+						<button type="button" class="btn btn-default" id="generate_btn">Generate</button>
+						<button type="button" class="btn btn-primary" id="parse_btn">Parse HTML</button>
+						<button type="button" class="btn btn-danger" id="reset_btn">Reset</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
 
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-7" id="generated_inputs">
+
+			</div>
+			<div class="col-xs-5" id="generated_json">
+
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12" id="container_parsed-html">
+
+			</div>
+		</div>
+	</div>
 	
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
