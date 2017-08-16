@@ -13,6 +13,9 @@ var AllLevelsArray = [];
 var level_1_name_array = [];
 
 function createInputs() {
+	var listContainer = document.createElement('div');
+	listContainer.className = 'list_container';
+
 	var level_1_label = document.createElement('h3');
 	level_1_label.textContent = 'Name of level-1 category #' + (i + 1);
 
@@ -20,10 +23,52 @@ function createInputs() {
 	level_1_name.className = 'form-control ' + 'level_1-name' + [i] + ' level_1';
 	level_1_name.setAttribute('placeholder', 'Level-1 name');
 
-	generatedInputs.appendChild(level_1_label);
-	generatedInputs.appendChild(level_1_name);
+	var level_2_list_label = document.createElement('h3');
+	level_2_list_label.textContent = 'How many level 2 categories for #' + (i + 1);
+
+	var level_2_list_amount = document.createElement('input');
+	level_2_list_amount.className = 'form-control ' + 'level_2_list_amount' + [i] + ' level_2';
+	level_2_list_amount.setAttribute('placeholder', 'How many level 2 categories?');
+
+	var level_2_gen_btn = document.createElement('button');
+	level_2_gen_btn.className = 'btn btn-default level_2-btn';
+	level_2_gen_btn.textContent = 'Generate level 2';
+
+	listContainer.appendChild(level_1_label);
+	listContainer.appendChild(level_1_name);
+	listContainer.appendChild(level_2_list_label);
+	listContainer.appendChild(level_2_list_amount);
+	listContainer.appendChild(level_2_gen_btn);
+	generatedInputs.appendChild(listContainer);
 
 	level_1_name_array.push(level_1_name);
+
+	level_2_gen_btn.addEventListener('click', function() {
+
+		for(i = 0; i < level_2_list_amount.value; i++) {
+			var level_2_label = document.createElement('h4');
+			level_2_label.textContent = 'Info for level 2 category #' + (i + 1);
+
+			var level_2_name = document.createElement('input');
+			level_2_name.className = 'form-control';
+			level_2_name.setAttribute('id', 'level_2_name' + [i]);
+			level_2_name.setAttribute('placeholder', 'level 2 name');
+
+			var level_2_url = document.createElement('input');
+			level_2_url.className = 'form-control';
+			level_2_url.setAttribute('id', 'level_2_url' + [i]);
+			level_2_url.setAttribute('placeholder', 'level 2 url');
+
+			// save for after we finish storing data for level 2
+			// var level_3 = document.createElement('input');
+
+			listContainer.appendChild(level_2_label);
+			listContainer.appendChild(level_2_name);
+			listContainer.appendChild(level_2_url);
+		}
+		// this is for each individual level 2 generator button
+		this.setAttribute('disabled', 'true');
+	}, false)
 }
 
 function appendInputs() {
@@ -43,9 +88,16 @@ function parseData() {
 	
 	for(i = 0; i < totalCategoryAmount; i++) {
 		var level_1_object = {};
-		console.log(level_1_name_array[i].value);
+		var level_2_list = [];
+		var level_2_objects = {};
+		var level_2_objName = document.getElementById('level_2_name' + i);;
+
+		console.log(level_2_objName.value);
 
 		level_1_object['level-1'] = level_1_name_array[i].value;
+		level_2_objects['L2-name'] = level_2_objName.value;
+		level_2_list.push(level_2_objects);
+		level_1_object['level-2-list'] = level_2_list;
 		AllLevelsArray.push(level_1_object);
 	}
 	console.log(AllLevelsArray);
