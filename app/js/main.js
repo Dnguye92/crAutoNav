@@ -6,7 +6,6 @@ var generatedInputs = document.getElementById('generated_inputs');
 var generatedJson = document.getElementById('generated_json');
 var parsedContainer = document.getElementById('container_parsed-html');
 var totalCategoryAmount = parseInt(categoryAmount.value);
-console.log(generatedInputs);
 
 // create arrays and objects that will hold the JSON data
 var AllLevelsArray = [];
@@ -29,6 +28,7 @@ function createInputs() {
 	var level_2_list_amount = document.createElement('input');
 	level_2_list_amount.className = 'form-control ' + 'level_2_list_amount' + [i] + ' level_2';
 	level_2_list_amount.setAttribute('placeholder', 'How many level 2 categories?');
+	level_2_list_amount.setAttribute('id', 'level_2_list_amount' + [i])
 
 	var level_2_gen_btn = document.createElement('button');
 	level_2_gen_btn.className = 'btn btn-default level_2-btn';
@@ -61,7 +61,7 @@ function createInputs() {
 
 			// save for after we finish storing data for level 2
 			// var level_3 = document.createElement('input');
-
+			
 			listContainer.appendChild(level_2_label);
 			listContainer.appendChild(level_2_name);
 			listContainer.appendChild(level_2_url);
@@ -80,7 +80,6 @@ function appendInputs() {
 	for(i = 0; i < totalCategoryAmount; i++) {
 		createInputs();
 	}
-
 }
 
 function parseData() {
@@ -89,15 +88,23 @@ function parseData() {
 	for(i = 0; i < totalCategoryAmount; i++) {
 		var level_1_object = {};
 		var level_2_list = [];
-		var level_2_objects = {};
-		var level_2_objName = document.getElementById('level_2_name' + i);;
+		
+		
+		var level_2_list_amount = document.getElementById('level_2_list_amount' + i);
+		console.log(level_2_list_amount.value);
 
-		console.log(level_2_objName.value);
+		for(j = 0; j < level_2_list_amount.value; j++) {
+			var level_2_objects = {};
+			var level_2_objName = document.getElementById('level_2_name' + i);
+			console.log(level_2_objName.value);
+			
+			level_2_objects['L2-name'] = level_2_objName.value;
+			level_2_list.push(level_2_objects);
+			level_1_object['level-2-list'] = level_2_list;
+		}
 
 		level_1_object['level-1'] = level_1_name_array[i].value;
-		level_2_objects['L2-name'] = level_2_objName.value;
-		level_2_list.push(level_2_objects);
-		level_1_object['level-2-list'] = level_2_list;
+	
 		AllLevelsArray.push(level_1_object);
 	}
 	console.log(AllLevelsArray);
