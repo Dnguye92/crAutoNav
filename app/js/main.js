@@ -83,19 +83,18 @@ function appendInputs() {
 }
 
 function parseData() {
-	totalCategoryAmount = parseInt(categoryAmount.value);
-	
 	for(i = 0; i < totalCategoryAmount; i++) {
 		var level_1_object = {};
 		var level_2_list = [];
 		
-		
 		var level_2_list_amount = document.getElementById('level_2_list_amount' + i);
 		console.log(level_2_list_amount.value);
 
-		for(j = 0; j < level_2_list_amount.value; j++) {
+		level_1_object['level-1'] = level_1_name_array[i].value;
+
+		for(var j = 0; j < level_2_list_amount.value; j++) {
 			var level_2_objects = {};
-			var level_2_objName = document.getElementById('level_2_name' + i);
+			var level_2_objName = document.getElementById('level_2_name' + j);
 			console.log(level_2_objName.value);
 			
 			level_2_objects['L2-name'] = level_2_objName.value;
@@ -103,8 +102,6 @@ function parseData() {
 			level_1_object['level-2-list'] = level_2_list;
 		}
 
-		level_1_object['level-1'] = level_1_name_array[i].value;
-	
 		AllLevelsArray.push(level_1_object);
 	}
 	console.log(AllLevelsArray);
