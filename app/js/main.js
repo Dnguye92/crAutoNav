@@ -50,14 +50,12 @@ function createInputs() {
 			level_2_label.textContent = 'Info for level 2 category #' + (i + 1);
 
 			var level_2_name = document.createElement('input');
-			level_2_name.className = 'form-control';
-			level_2_name.setAttribute('id', 'level_2_name' + [i]);
+			level_2_name.className = 'form-control level_2_name';
 			level_2_name.setAttribute('placeholder', 'level 2 name');
 
 			var level_2_url = document.createElement('input');
-			level_2_url.className = 'form-control';
-			level_2_url.setAttribute('id', 'level_2_url' + [i]);
-			level_2_url.setAttribute('placeholder', 'level 2 url');
+			level_2_url.className = 'form-control level_2_url';
+			level_2_url.setAttribute('placeholder', 'http://www.UrlHere.com');
 
 			// save for after we finish storing data for level 2
 			// var level_3 = document.createElement('input');
@@ -94,11 +92,13 @@ function parseData() {
 
 		for(var j = 0; j < level_2_list_amount.value; j++) {
 			var level_2_objects = {};
-			var level_2_objName = document.getElementById('level_2_name' + j);
-			console.log(level_2_objName);
-			console.log(level_2_objName.value);
-			
-			level_2_objects['L2-name'] = level_2_objName.value;
+			var level_2_objName = document.getElementsByClassName('level_2_name');
+			var level_2_url = document.getElementsByClassName('level_2_url');
+			console.log(level_2_objName[j].value);
+			console.log(level_2_url[j].value);
+
+			level_2_objects['L2-name'] = level_2_objName[j].value;
+			level_2_objects['L2-url'] = level_2_url[j].value;
 			level_2_list.push(level_2_objects);
 			level_1_object['level-2-list'] = level_2_list;
 		}
