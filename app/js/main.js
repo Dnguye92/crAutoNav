@@ -1,10 +1,10 @@
-var categoryAmount = document.getElementById('category_amount');
-var generateBtn = document.getElementById('generate_btn');
-var parseBtn = document.getElementById('parse_btn');
-var resetBtn = document.getElementById('reset_btn');
-var generatedInputs = document.getElementById('generated_inputs');
-var generatedJson = document.getElementById('generated_json');
-var parsedContainer = document.getElementById('container_parsed-html');
+var categoryAmount 		= document.getElementById('category_amount');
+var generateBtn 		= document.getElementById('generate_btn');
+var parseBtn 			= document.getElementById('parse_btn');
+var resetBtn 			= document.getElementById('reset_btn');
+var generatedInputs 	= document.getElementById('generated_inputs');
+var generatedJson 		= document.getElementById('generated_json');
+var parsedContainer 	= document.getElementById('container_parsed-html');
 var totalCategoryAmount = parseInt(categoryAmount.value);
 
 // create arrays and objects that will hold the JSON data
@@ -83,7 +83,7 @@ function appendInputs() {
 }
 
 function parseData() {
-	for(i = 0; i < totalCategoryAmount; i++) {
+	for(var i = 0; i < totalCategoryAmount; i++) {
 		var level_1_object = {};
 		var level_2_list = [];
 		
@@ -95,6 +95,7 @@ function parseData() {
 		for(var j = 0; j < level_2_list_amount.value; j++) {
 			var level_2_objects = {};
 			var level_2_objName = document.getElementById('level_2_name' + j);
+			console.log(level_2_objName);
 			console.log(level_2_objName.value);
 			
 			level_2_objects['L2-name'] = level_2_objName.value;
