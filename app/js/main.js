@@ -86,27 +86,27 @@ function parseData() {
 		var level_2_list = [];
 		
 		var level_2_list_amount = document.getElementById('level_2_list_amount' + i);
+		var level_2_objName = document.getElementsByClassName('level_2_name');
 		console.log(level_2_list_amount.value);
 
 		level_1_object['level-1'] = level_1_name_array[i].value;
 
 		for(var j = 0; j < level_2_list_amount.value; j++) {
 			var level_2_objects = {};
-			var level_2_objName = document.getElementsByClassName('level_2_name');
+			
 			var level_2_url = document.getElementsByClassName('level_2_url');
-			console.log(level_2_objName[j].value);
-			console.log(level_2_url[j].value);
+			// console.log(level_2_objName[j].value);
+			// console.log(level_2_url);
 
 			level_2_objects['L2-name'] = level_2_objName[j].value;
 			level_2_objects['L2-url'] = level_2_url[j].value;
 			level_2_list.push(level_2_objects);
 			level_1_object['level-2-list'] = level_2_list;
 		}
-
+		console.log(level_2_objName);
 		AllLevelsArray.push(level_1_object);
 	}
 	console.log(AllLevelsArray);
-	
 	generated_json.textContent = JSON.stringify(AllLevelsArray, null, 4);
 }
 
