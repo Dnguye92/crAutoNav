@@ -110,6 +110,14 @@ function parseData() {
 	generated_json.textContent = JSON.stringify(AllLevelsArray, null, 4);
 }
 
+// function resetData() {
+// 	generated_json.textContent = '';
+// 	generated_inputs.textContent = '';
+// 	categoryAmount.value = '';
+// 	generateBtn.removeAttribute('disabled');
+// }
+
 generateBtn.addEventListener('click', appendInputs, false);
 parseBtn.addEventListener('click', parseData, false);
+// resetBtn.addEventListener('click', resetData, false);
 
