@@ -81,6 +81,7 @@ function appendInputs() {
 }
 
 function parseData() {
+	var level_2_counter = 0;
 	for(var i = 0; i < totalCategoryAmount; i++) {
 		var level_1_object = {};
 		var level_2_list = [];
@@ -89,8 +90,10 @@ function parseData() {
 		console.log(level_2_list_amount.value);
 
 		level_1_object['level-1'] = level_1_name_array[i].value;
+		var level_2_count_start = level_2_counter;
+		var level_2_count_end = level_2_counter + parseInt(level_2_list_amount.value);
 
-		for(var j = 0; j < level_2_list_amount.value; j++) {
+		for(var j = level_2_counter; j < level_2_count_end; j++) {
 			var level_2_objects = {};
 			var level_2_objName = document.getElementsByClassName('level_2_name');
 			var level_2_url = document.getElementsByClassName('level_2_url');
@@ -102,7 +105,7 @@ function parseData() {
 			level_2_list.push(level_2_objects);
 			level_1_object['level-2-list'] = level_2_list;
 		}
-
+		level_2_counter += parseInt(level_2_list_amount.value);
 		AllLevelsArray.push(level_1_object);
 	}
 	console.log(AllLevelsArray);
@@ -110,14 +113,14 @@ function parseData() {
 	generated_json.textContent = JSON.stringify(AllLevelsArray, null, 4);
 }
 
-// function resetData() {
-// 	generated_json.textContent = '';
-// 	generated_inputs.textContent = '';
-// 	categoryAmount.value = '';
-// 	generateBtn.removeAttribute('disabled');
-// }
+function resetData() {
+	generated_json.textContent = '';
+	generated_inputs.textContent = '';
+	categoryAmount.value = '';
+	generateBtn.removeAttribute('disabled');
+}
 
 generateBtn.addEventListener('click', appendInputs, false);
 parseBtn.addEventListener('click', parseData, false);
-// resetBtn.addEventListener('click', resetData, false);
+resetBtn.addEventListener('click', resetData, false);
 
