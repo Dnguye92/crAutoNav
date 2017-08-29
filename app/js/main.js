@@ -39,6 +39,7 @@ function createInputs() {
 
 	var level_3_list_amount = document.createElement('input');
 	level_3_list_amount.className = 'form-control ' + 'level_3_list_amount' + [i] + ' level_3';
+	level_3_list_amount.setAttribute('id', 'level_3_list_amount' + [i]);
 	level_3_list_amount.setAttribute('placeholder', 'How many level-3 categories?');
 
 
@@ -109,9 +110,12 @@ function appendInputs() {
 
 function parseData() {
 	var level_2_counter = 0;
+	var level_3_counter = 0;
+
 	for(var i = 0; i < totalCategoryAmount; i++) {
 		var level_1_object = {};
 		var level_2_list = [];
+		var level_3_list = [];
 		
 		var level_2_list_amount = document.getElementById('level_2_list_amount' + i);
 		console.log(level_2_list_amount.value);
@@ -124,13 +128,31 @@ function parseData() {
 			var level_2_objects = {};
 			var level_2_objName = document.getElementsByClassName('level_2_name');
 			var level_2_url = document.getElementsByClassName('level_2_url');
+			var level_3_list_amount = document.getElementById('level_3_list_amount' + i);
+			var level_3_count_start = level_3_counter;
+			var level_3_count_end = level_3_counter + parseInt(level_3_list_amount.value);
+
 			console.log(level_2_objName[j].value);
 			console.log(level_2_url[j].value);
+
+			for(var k = level_3_counter; k < level_3_count_end; k++) {
+				var level_3_objects = {};
+				var level_3_objName = document.getElementsByClassName('level_3_name');
+				var level_3_url = document.getElementsByClassName('level_3_url');
+				console.log(level_3_objName[k].value);
+				console.log(level_3_url[k].value);
+
+				level_3_objects['L3-name'] = level_3_objName[k].value;
+				level_3_objects['L3-url'] = level_3_url[k].value;
+				level_3_list.push(level_3_objects);
+			}
 
 			level_2_objects['L2-name'] = level_2_objName[j].value;
 			level_2_objects['L2-url'] = level_2_url[j].value;
 			level_2_list.push(level_2_objects);
 			level_1_object['level-2-list'] = level_2_list;
+			level_2_objects['level-3'] = level_3_list;
+			level_3_counter += parseInt(level_3_list_amount.value);
 		}
 		level_2_counter += parseInt(level_2_list_amount.value);
 		AllLevelsArray.push(level_1_object);
@@ -150,4 +172,3 @@ function resetData() {
 generateBtn.addEventListener('click', appendInputs, false);
 parseBtn.addEventListener('click', parseData, false);
 resetBtn.addEventListener('click', resetData, false);
-
