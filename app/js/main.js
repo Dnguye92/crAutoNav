@@ -57,11 +57,11 @@ function createInputs() {
 		//for loop to generate level-2 categories
 		for(i = 0; i < level_2_list_amount.value; i++) {
 			var level_2_label = document.createElement('h4');
-			level_2_label.textContent = 'Info for level 2 category #' + (i + 1);
+			level_2_label.textContent = 'Info for level-2 category #' + (i + 1);
 
 			var level_2_name = document.createElement('input');
 			level_2_name.className = 'form-control level_2_name';
-			level_2_name.setAttribute('placeholder', 'level 2 name');
+			level_2_name.setAttribute('placeholder', 'level-2 name');
 
 			var level_2_url = document.createElement('input');
 			level_2_url.className = 'form-control level_2_url';
@@ -74,6 +74,22 @@ function createInputs() {
 
 		//for loop to generate level-3 categories
 		console.log(parseInt(level_3_list_amount.value));
+		for(i = 0; i < level_3_list_amount.value; i++) {
+			var level_3_label = document.createElement('h5');
+			level_3_label.textContent = 'Info for level-3 category #' + (i + 1);
+
+			var level_3_name = document.createElement('input');
+			level_3_name.className = 'form-control level_3_name';
+			level_3_name.setAttribute('placeholder', 'level-3 name')
+
+			var level_3_url = document.createElement('input');
+			level_3_url.className = 'form-control level_3_url';
+			level_3_url.setAttribute('placeholder', 'http://www.UrlHere.com');
+
+			listContainer.appendChild(level_3_label);
+			listContainer.appendChild(level_3_name);
+			listContainer.appendChild(level_3_url);
+		}
 
 		// this is for each individual level 2 generator button
 		this.setAttribute('disabled', 'true');
