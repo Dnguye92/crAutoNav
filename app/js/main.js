@@ -166,6 +166,7 @@ function resetData() {
 	generated_json.textContent = '';
 	generated_inputs.textContent = '';
 	categoryAmount.value = '';
+	AllLevelsArray = [];
 	generateBtn.removeAttribute('disabled');
 }
 
