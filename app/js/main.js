@@ -32,7 +32,7 @@ function createInputs() {
 
 	var level_2_gen_btn = document.createElement('button');
 	level_2_gen_btn.className = 'btn btn-default level_2-btn';
-	level_2_gen_btn.textContent = 'Generate level-2/3';
+	level_2_gen_btn.textContent = 'Generate level-2';
 
 	var level_3_list_label = document.createElement('h4');
 	level_3_list_label.textContent = 'How many level-3 categories for #' + (i + 1) + ' (Enter 0 if none)';
@@ -41,6 +41,10 @@ function createInputs() {
 	level_3_list_amount.className = 'form-control ' + 'level_3_list_amount' + [i] + ' level_3';
 	level_3_list_amount.setAttribute('id', 'level_3_list_amount' + [i]);
 	level_3_list_amount.setAttribute('placeholder', 'How many level-3 categories?');
+
+	var level_3_gen_btn = document.createElement('button');
+	level_3_gen_btn.className = 'btn btn-primary level_3-btn';
+	level_3_gen_btn.textContent = 'Generate level-3';
 
 
 	listContainer.appendChild(level_1_label);
@@ -74,23 +78,44 @@ function createInputs() {
 		}
 
 		//for loop to generate level-3 categories
-		console.log(parseInt(level_3_list_amount.value));
-		for(i = 0; i < level_3_list_amount.value; i++) {
-			var level_3_label = document.createElement('h5');
-			level_3_label.textContent = 'Info for level-3 category #' + (i + 1);
+		// console.log(parseInt(level_3_list_amount.value));
+		// for(i = 0; i < level_3_list_amount.value; i++) {
+		// 	var level_3_label = document.createElement('h5');
+		// 	level_3_label.textContent = 'Info for level-3 category #' + (i + 1);
 
-			var level_3_name = document.createElement('input');
-			level_3_name.className = 'form-control level_3_name';
-			level_3_name.setAttribute('placeholder', 'level-3 name')
+		// 	var level_3_name = document.createElement('input');
+		// 	level_3_name.className = 'form-control level_3_name';
+		// 	level_3_name.setAttribute('placeholder', 'level-3 name')
 
-			var level_3_url = document.createElement('input');
-			level_3_url.className = 'form-control level_3_url';
-			level_3_url.setAttribute('placeholder', 'http://www.UrlHere.com');
+		// 	var level_3_url = document.createElement('input');
+		// 	level_3_url.className = 'form-control level_3_url';
+		// 	level_3_url.setAttribute('placeholder', 'http://www.UrlHere.com');
 
-			listContainer.appendChild(level_3_label);
-			listContainer.appendChild(level_3_name);
-			listContainer.appendChild(level_3_url);
-		}
+		// 	listContainer.appendChild(level_3_label);
+		// 	listContainer.appendChild(level_3_name);
+		// 	listContainer.appendChild(level_3_url);
+		// }
+
+		level_3_gen_btn.addEventListener('click', function() {
+			//for loop to generate level-3 categories
+			console.log(parseInt(level_3_list_amount.value));
+			for(i = 0; i < level_3_list_amount.value; i++) {
+				var level_3_label = document.createElement('h5');
+				level_3_label.textContent = 'Info for level-3 category #' + (i + 1);
+
+				var level_3_name = document.createElement('input');
+				level_3_name.className = 'form-control level_3_name';
+				level_3_name.setAttribute('placeholder', 'level-3 name')
+
+				var level_3_url = document.createElement('input');
+				level_3_url.className = 'form-control level_3_url';
+				level_3_url.setAttribute('placeholder', 'http://www.UrlHere.com');
+
+				listContainer.appendChild(level_3_label);
+				listContainer.appendChild(level_3_name);
+				listContainer.appendChild(level_3_url);
+			}
+		})
 
 		// this is for each individual level 2 generator button
 		this.setAttribute('disabled', 'true');
